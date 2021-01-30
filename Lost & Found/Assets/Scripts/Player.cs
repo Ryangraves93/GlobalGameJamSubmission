@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Camera camera;
     public bool attacking = false;
     public bool canAttack;
-    float Speed = 10f;
+
+
+    public float Speed = 10f;
+    public float Force = 100f;
+
+    public bool UseForce = true;
+
+    Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("started");
+
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -19,25 +28,25 @@ public class Player : MonoBehaviour
     {
         canAttack = !attacking;
 
-        float RightInput = Input.GetAxisRaw("Horizontal");
-        float ForwardInput = Input.GetAxisRaw("Vertical");
+        if (UseForce)
+        {
+            DoMovement_Force();
+        }
+        else
+        {
+            float RightInput = Input.GetAxisRaw("Horizontal");
+            float ForwardInput = Input.GetAxisRaw("Vertical");
 
+            Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
 
-        Debug.Log("F" + ForwardInput);
-        Debug.Log("R" + RightInput);
+            Vector3 MovementInput = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput);
 
-        Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
+            Vector3 MovementDelta = MovementInput * Speed * Time.deltaTime;
 
-        Vector3 MovementInput = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput);
+            transform.Translate(MovementDelta);
+        }
+        
 
-        Vector3 MovementDelta = MovementInput * Speed * Time.deltaTime;
-
-        transform.Translate(MovementDelta);
-
-        Vector3 start = transform.position;
-        Vector3 end = start + MovementInput * (float)200.0;
-
-        Debug.DrawLine(start, end, Color.white, 0.1f, true);
 
         if (Input.GetKeyDown(KeyCode.Space) && canAttack)
         {
@@ -75,5 +84,23 @@ public class Player : MonoBehaviour
             }
         }
         
+    }
+
+
+    void DoMovement_Force()
+    {
+        float RightInput = Input.GetAxisRaw("Horizontal");
+        float ForwardInput = Input.GetAxisRaw("Vertical");
+
+        Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
+
+        Vector3 MovementDirection = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput);
+
+        MovementDirection.Normalize();
+
+        float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
+
+        rb.AddForce(MovementDirection * Force * InputStrength * Time.deltaTime);
+
     }
 }
