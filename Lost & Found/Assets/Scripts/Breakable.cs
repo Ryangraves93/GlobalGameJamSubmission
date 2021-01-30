@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public AudioClip sound;
+    public GameObject destroyedModel;
+    public bool fragile = false;
+    public void breakMe(){
         
-    }
+        Debug.Log("break");
+        GameManager.Instance.OnBreakObject();
+        Instantiate(destroyedModel, transform.position, transform.rotation);
+        Destroy(gameObject);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
