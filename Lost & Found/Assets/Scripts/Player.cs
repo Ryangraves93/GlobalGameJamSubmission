@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(CapsuleCollider))]
-[RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshRenderer))]
 public class Player : MonoBehaviour
 {
+<<<<<<< HEAD
     public bool attacking = false;
     public bool canAttack;
     public GameObject hitBox;
@@ -120,6 +117,44 @@ public class Player : MonoBehaviour
         }
         return closest;
     }
+=======
+    public Camera camera;
+    float speed = 10f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        //assuming we're only using the single camera:
+        camera = Camera.main;
+        float horizontalAxis = Input.GetAxis("Horizontal");
+        float verticalAxis = Input.GetAxis("Vertical");
+
+        float facing = camera.transform.rotation.y;
+        float DistanceFromNeutral = 0;
+        float transformZ = 0;
+        float transformX = 0;
+        float finalZ = 0;
+        float finalX = 0;
+
+        if (facing > -90 && facing <= 90)
+        { //facing forward
+            if (facing >= 0)
+            {
+                DistanceFromNeutral = (90 - facing);
+            }
+            else
+            {
+                if (facing < 0)
+                {
+                    DistanceFromNeutral = (90 + facing);
+                };
+            };
+>>>>>>> 079e394b255fa3d41af06b24d428b4529a436cbd
 
     //private void OnCollisionEnter(Collision col)
     //{
@@ -136,20 +171,19 @@ public class Player : MonoBehaviour
     // }
 
 
-    void DoMovement_Force()
-    {
-        float RightInput = Input.GetAxisRaw("Horizontal");
-        float ForwardInput = Input.GetAxisRaw("Vertical");
+            transformX = (1 / 90) * (DistanceFromNeutral);
+            transformZ = 90 - transformX;
+        };
 
-        Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
 
-        Vector3 MovementDirection = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput);
+        finalX = (transformX * verticalAxis) + (transformZ * horizontalAxis);
 
-        MovementDirection.Normalize();
 
-        float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
+        finalZ = (transformZ * verticalAxis) + (transformX * horizontalAxis);
 
-        m_rb.AddForce(MovementDirection * Force * InputStrength * Time.deltaTime);
 
+        transform.Translate((new Vector3(finalX * 0.01f, 0f, finalZ * 0.01f)) * speed * Time.deltaTime);
     }
+
+
 }

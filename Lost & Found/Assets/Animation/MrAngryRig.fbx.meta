@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: b8e1ae45d7df6c24abdf03c4c6ea592a
+guid: c85f6731a67028e478f80570c579c644
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 6217181996417942519
+    second: MrAngry_animReady
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -86,7 +89,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: MrAngry_rig:bind_root
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -94,7 +97,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
