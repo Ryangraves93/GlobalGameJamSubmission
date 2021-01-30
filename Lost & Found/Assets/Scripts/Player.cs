@@ -5,56 +5,75 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Camera camera;
-    float speed = 10f;
+    public bool attacking = false;
+    public bool canAttack;
+    float Speed = 10f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("started");
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        //assuming we're only using the single camera:
-        camera = Camera.main;
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        float verticalAxis = Input.GetAxis("Vertical");
+        canAttack = !attacking;
 
-        float facing = camera.transform.rotation.y;
-        float DistanceFromNeutral = 0;
-        float transformZ = 0;
-        float transformX = 0;
-        float finalZ = 0;
-        float finalX = 0;
-
-        if (facing > -90 && facing <= 90)
-        { //facing forward
-            if (facing >= 0)
-            {
-                DistanceFromNeutral = (90 - facing);
-            }
-            else
-            {
-                if (facing < 0)
-                {
-                    DistanceFromNeutral = (90 + facing);
-                };
-            };
+        float RightInput = Input.GetAxisRaw("Horizontal");
+        float ForwardInput = Input.GetAxisRaw("Vertical");
 
 
-            transformX = (1 / 90) * (DistanceFromNeutral);
-            transformZ = 90 - transformX;
-        };
+        Debug.Log("F" + ForwardInput);
+        Debug.Log("R" + RightInput);
 
+        Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
 
-        finalX = (transformX * verticalAxis) + (transformZ * horizontalAxis);
+        Vector3 MovementInput = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput);
 
+        Vector3 MovementDelta = MovementInput * Speed * Time.deltaTime;
 
-        finalZ = (transformZ * verticalAxis) + (transformX * horizontalAxis);
+        transform.Translate(MovementDelta);
 
+        Vector3 start = transform.position;
+        Vector3 end = start + MovementInput * (float)200.0;
 
-        transform.Translate((new Vector3(finalX * 0.01f, 0f, finalZ * 0.01f)) * speed * Time.deltaTime);
+        Debug.DrawLine(start, end, Color.white, 0.1f, true);
+
+        if (Input.GetKeyDown(KeyCode.Space) && canAttack)
+        {
+            StartCoroutine(attack());
+        }
     }
 
+    Quaternion GetMovementFrame(Transform Frame)
+    {
+        Vector3 FrameForward = Vector3.ProjectOnPlane(Frame.forward, Vector3.up).normalized;
 
+        Quaternion MovementQuat = Quaternion.LookRotation(FrameForward);
+
+        return MovementQuat;
+    }
+
+        
+    
+
+    IEnumerator attack()
+    {
+        attacking = true;
+        yield return new WaitForSeconds(1);
+        attacking = false;
+        
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.collider.tag == "breakable")
+        {
+            if (attacking || col.collider.GetComponent<Breakable>().fragile)
+            {
+                col.collider.GetComponent<Breakable>().breakMe();
+            }
+        }
+        
+    }
 }
