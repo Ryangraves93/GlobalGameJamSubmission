@@ -80,9 +80,6 @@ public class Player : MonoBehaviour
         return MovementQuat;
     }
 
-        
-    
-
     IEnumerator attack()
     {
         attacking = true;
