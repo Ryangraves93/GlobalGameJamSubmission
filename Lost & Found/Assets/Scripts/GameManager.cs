@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    
     private static GameManager _instance;
 
     public static GameManager Instance { get { return _instance; } }
 
+
     public float transitionTime = 1f;
+    public Transform breakablesContainer;
+    public float breakablesCount = 0;
+    public float percentIncrease;
+    public float completionPercent = 0f;
+    public Text percentText;
 
     private void Awake()
     {
@@ -23,6 +31,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        CalculateScore();
+    }
+
     void MoveCamera()
     {
 
@@ -31,6 +44,24 @@ public class GameManager : MonoBehaviour
     void LoadLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    void CalculateScore()
+    {
+        foreach (Transform child in breakablesContainer)
+        {
+            breakablesCount++;
+        }
+
+        percentIncrease = 100 / breakablesCount;
+    }
+
+    public void OnBreakObject()
+    {
+        completionPercent += percentIncrease;
+        if (completionPercent > 99) { Debug.Log("LEVEL COMPLETE"); completionPercent = 100; }
+        
+        percentText.text = "SMASHED: " +(int)completionPercent+ "%";
     }
 
     IEnumerator LoadLevel(int levelIndex)
