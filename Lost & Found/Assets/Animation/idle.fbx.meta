@@ -33,7 +33,84 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: idle
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MrAngry_rig:bind_root
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_Lfoot
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_Rfoot
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_Lbrow1
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_Lbrow1/MrAngry_rig:bind_Lbrow2
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_Lbrow1/MrAngry_rig:bind_Lbrow2/MrAngry_rig:bind_Lbrow3
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_Leye
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_lip1
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_lip2
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_lip3
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_lip4
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_lip5
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_lip6
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_Rbrow1
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_Rbrow1/MrAngry_rig:bind_Rbrow2
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_Rbrow1/MrAngry_rig:bind_Rbrow2/MrAngry_rig:bind_Rbrow3
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_faceroot/MrAngry_rig:bind_Reye
+        weight: 1
+      - path: MrAngry_rig:bind_root/MrAngry_rig:bind_spine/MrAngry_rig:bind_spine1/MrAngry_rig:bind_spine2/MrAngry_rig:bind_spine3/MrAngry_rig:bind_head
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 0
   meshes:
     lODScreenPercentages: []
