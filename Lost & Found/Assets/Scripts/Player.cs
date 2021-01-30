@@ -90,6 +90,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
+        Debug.Log("Player is trying to break!");
+
         if(col.collider.tag == "breakable")
         {
             if (attacking || col.collider.GetComponent<Breakable>().fragile)
