@@ -10,10 +10,11 @@ public class Player : MonoBehaviour
 {
     public bool attacking = false;
     public bool canAttack;
-
+    public GameObject hitBox;
 
     public float Speed = 10f;
     public float Force = 100f;
+    public float attackRange = 5f;
 
     public bool UseForce = true;
 
@@ -66,12 +67,19 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameManager.Instance.SpawnEnemy();
+           // GameManager.Instance.SpawnEnemy();
         }
 
-            if (Input.GetKeyDown(KeyCode.Space) && canAttack)
+        if (Input.GetKeyDown(KeyCode.Space) && canAttack)
         {
-            StartCoroutine(attack());
+            Vector3 diff = GetClosestBreakable().transform.position - transform.position;
+
+            if(diff.magnitude<attackRange)
+            {
+                StartCoroutine(attack());
+                GetClosestBreakable().GetComponent<Breakable>().breakMe();
+            }
+            
         }
     }
 
@@ -87,24 +95,45 @@ public class Player : MonoBehaviour
     IEnumerator attack()
     {
         attacking = true;
-        yield return new WaitForSeconds(1);
+        //hitBox.GetComponent<HitBox>().attacking = true;
+        yield return new WaitForSeconds(0.5f);
         attacking = false;
-        
+        //hitBox.GetComponent<HitBox>().attacking = false;
     }
 
-    private void OnCollisionEnter(Collision col)
+    public GameObject GetClosestBreakable()
     {
-        Debug.Log("Player is trying to break!");
-
-        if(col.collider.tag == "breakable")
+        GameObject[] breakables;
+        breakables = GameObject.FindGameObjectsWithTag("breakable"); // gets all trees
+        GameObject closest = null;
+        float distance = Mathf.Infinity; // placeholders
+        Vector3 position = transform.position;
+        foreach (GameObject breakable in breakables)
         {
-            if (attacking || col.collider.GetComponent<Breakable>().fragile)
+            Vector3 diff = breakable.transform.position - position;
+            float curDistance = diff.sqrMagnitude; // gets distance as whole number
+            if (curDistance < distance)
             {
-                col.collider.GetComponent<Breakable>().breakMe();
+                closest = breakable; // assigns closest breakable
+                distance = curDistance;
             }
         }
-        
+        return closest;
     }
+
+    //private void OnCollisionEnter(Collision col)
+    //{
+    //   Debug.Log("Player is trying to break!");
+
+    //   if(col.collider.tag == "breakable")
+    //   {
+    //      if (attacking || col.collider.GetComponent<Breakable>().fragile)
+    //       {
+    //          col.collider.GetComponent<Breakable>().breakMe();
+    //      }
+    //   }
+
+    // }
 
 
     void DoMovement_Force()
