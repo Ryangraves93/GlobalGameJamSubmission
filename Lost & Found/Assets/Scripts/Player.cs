@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
 public class Player : MonoBehaviour
 {
     public bool attacking = false;
@@ -13,14 +17,27 @@ public class Player : MonoBehaviour
 
     public bool UseForce = true;
 
-    Rigidbody rb;
+    Rigidbody m_rb;
+    CapsuleCollider m_capsuleCollider;
+    MeshFilter m_meshFilter;
+    MeshRenderer m_meshRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("started");
+        IntializeComponents();
 
-        rb = GetComponent<Rigidbody>();
+    }
+
+    void IntializeComponents()
+    {
+        m_rb = GetComponent<Rigidbody>();
+        m_capsuleCollider = GetComponent<CapsuleCollider>();
+        m_meshFilter = GetComponent<MeshFilter>();
+        m_meshRenderer = GetComponent<MeshRenderer>();
+
+        m_rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     // Update is called once per frame
@@ -100,7 +117,7 @@ public class Player : MonoBehaviour
 
         float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
 
-        rb.AddForce(MovementDirection * Force * InputStrength * Time.deltaTime);
+        m_rb.AddForce(MovementDirection * Force * InputStrength * Time.deltaTime);
 
     }
 }
