@@ -10,6 +10,7 @@ public class Breakable : MonoBehaviour
     public void breakMe(){
         
         Debug.Log("break");
+        GameManager.Instance.OnBreakObject();
         Instantiate(destroyedModel, transform.position, transform.rotation);
         Destroy(gameObject);
 
