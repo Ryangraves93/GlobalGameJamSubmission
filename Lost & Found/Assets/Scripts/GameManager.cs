@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public float percentIncrease;
     public float completionPercent = 0f;
     public Text percentText;
+    public GameObject enemyToSpawn;
+    public GameObject[] spawnLocations;
 
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CalculateScore();
+        SpawnEnemy();
     }
 
     void MoveCamera()
@@ -62,6 +65,13 @@ public class GameManager : MonoBehaviour
         if (completionPercent > 99) { Debug.Log("LEVEL COMPLETE"); completionPercent = 100; }
         
         percentText.text = "SMASHED: " +(int)completionPercent+ "%";
+    }
+
+    public void SpawnEnemy()
+    {
+        Instantiate(enemyToSpawn, spawnLocations[Random.Range(0,spawnLocations.Length)].transform.position, Quaternion.identity);
+        //yield return new WaitForSeconds(2.0f);
+       // StartCoroutine(SpawnEnemy());
     }
 
     IEnumerator LoadLevel(int levelIndex)
