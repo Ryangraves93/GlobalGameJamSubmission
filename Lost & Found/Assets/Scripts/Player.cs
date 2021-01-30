@@ -62,10 +62,14 @@ public class Player : MonoBehaviour
 
             transform.Translate(MovementDelta);
         }
-        
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && canAttack)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.SpawnEnemy();
+        }
+
+            if (Input.GetKeyDown(KeyCode.Space) && canAttack)
         {
             StartCoroutine(attack());
         }
