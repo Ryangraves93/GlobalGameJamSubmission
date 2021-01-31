@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
     public bool attacking = false;
