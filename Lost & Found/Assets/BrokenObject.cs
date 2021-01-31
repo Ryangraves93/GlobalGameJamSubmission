@@ -5,10 +5,12 @@ using UnityEngine;
 public class BrokenObject : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public void OnActivate()
     {
         StartCoroutine(CheckFragmentsCoroutine());
     }
+
+    
 
     IEnumerator CheckFragmentsCoroutine()
     {
