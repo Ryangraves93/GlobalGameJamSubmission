@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void GameOver()
+    {
+        Debug.Log("GAME OVER");
+    }
+
     void LoadLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));

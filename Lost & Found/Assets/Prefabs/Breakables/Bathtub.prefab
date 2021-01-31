@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &987385299984886896
+--- !u!1 &3997285574670304625
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 502209763375511242}
-  - component: {fileID: 3555572712450947439}
-  - component: {fileID: 1635679414314667429}
-  - component: {fileID: 2641723054768048690}
-  - component: {fileID: -631461688768779792}
-  m_Layer: 0
-  m_Name: Kenny coffeetable
+  - component: {fileID: 4337782973005045707}
+  - component: {fileID: 836892403145838702}
+  - component: {fileID: 3204815248316687524}
+  - component: {fileID: -2198086982587955989}
+  - component: {fileID: 5074411444328415290}
+  m_Layer: 7
+  m_Name: Bathtub
   m_TagString: breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &502209763375511242
+--- !u!4 &4337782973005045707
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987385299984886896}
+  m_GameObject: {fileID: 3997285574670304625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20911789, y: -0.0000037491302, z: -12.406239}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3555572712450947439
+--- !u!33 &836892403145838702
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987385299984886896}
-  m_Mesh: {fileID: -5193893704843580936, guid: 070a478602177e442abdb6a91927ba04, type: 3}
---- !u!23 &1635679414314667429
+  m_GameObject: {fileID: 3997285574670304625}
+  m_Mesh: {fileID: 5887539713737324625, guid: d9842d64fcf902248bf76a534fa9bc84, type: 3}
+--- !u!23 &3204815248316687524
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987385299984886896}
+  m_GameObject: {fileID: 3997285574670304625}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5233825809293494839, guid: 070a478602177e442abdb6a91927ba04, type: 3}
+  - {fileID: -4461982083783677227, guid: d9842d64fcf902248bf76a534fa9bc84, type: 3}
+  - {fileID: 7824345726321687471, guid: d9842d64fcf902248bf76a534fa9bc84, type: 3}
+  - {fileID: -2766664876575019840, guid: d9842d64fcf902248bf76a534fa9bc84, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,31 +85,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2641723054768048690
+--- !u!65 &-2198086982587955989
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997285574670304625}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0595, y: 0.020999994, z: 0.027999993}
+  m_Center: {x: 0.02975, y: 0.010499997, z: 0.013999997}
+--- !u!114 &5074411444328415290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987385299984886896}
+  m_GameObject: {fileID: 3997285574670304625}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad645b227630f1143baa87a99576f4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 0}
-  destroyedModel: {fileID: 3299596972382325052, guid: 4b59d2a09bcc32c4bb5853bc1831b99d, type: 3}
+  destroyedModel: {fileID: 4462826142142137892, guid: 9ee84310beec3f349ab4ee6f03e912b2, type: 3}
   fragile: 0
---- !u!65 &-631461688768779792
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987385299984886896}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.033049807, y: 0.020000009, z: 0.011500007}
-  m_Center: {x: -0.006524903, y: -0.0050000027, z: 0.0057500005}
