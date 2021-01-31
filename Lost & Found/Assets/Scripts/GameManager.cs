@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         //progressBar.fillAmount = 0f;
         //m_audioSource = GetComponent<AudioSource>();
-        //CalculateScore();
+        CalculateScore();
         //SpawnEnemy();
         //StartCoroutine(DisplayStartText());
         GameManager.Instance.bSpawningEnemy = true;
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void LoadLevel()
+    void BeginLevelLoad()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
                 child.GetChild(0).gameObject.SetActive(true);
             }
         }
-        if (completionPercent > 99) { LoadLevel(); completionPercent = 100; }
+        if (completionPercent > 20) { BeginLevelLoad(); completionPercent = 100; }
         
         percentText.text = (int)completionPercent+ "%";
         //progressBar.fillAmount += (percentIncrease/100);

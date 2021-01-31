@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Ryan/Prototype_Level _1 1.unity
     guid: 92f82e2948c2ed24fb0f69d9822dee88
   - enabled: 1
-    path: Assets/Ryan/Prototype_Level_2.unity
-    guid: 8f15067413abb3241a9914a70bbd75a1
+    path: Assets/Ryan/Level_2.unity
+    guid: 3c69fa787e0017f49b7da7c0dac9ac0c
   - enabled: 1
-    path: Assets/Ryan/Prototype_Level_3.unity
-    guid: 474f5fc67d84759439d71412adf31f1a
+    path: Assets/Ryan/Level_3.unity
+    guid: f3c8887561c1bef4e8b32e80e5ce1f73
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 3ae79f3f00239ba49b123eef02f45402
   m_configObjects: {}
