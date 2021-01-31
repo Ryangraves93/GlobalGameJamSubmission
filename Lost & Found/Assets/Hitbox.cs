@@ -72,24 +72,18 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        //Debug.Log(col);
-
-        
 
         if (col.tag == "breakable")
         {
             m_Colliders.Add(col);
 
             //col.GetComponent<Breakable>().breakMe();
-
-            Debug.Log("Added " + col);
         }
     }
 
     private void OnTriggerExit(Collider col)
     {
         m_Colliders.Remove(col);
-        Debug.Log("removed " + col);
     }
 
 }
