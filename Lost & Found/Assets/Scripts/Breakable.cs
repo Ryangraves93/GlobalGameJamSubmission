@@ -6,13 +6,16 @@ public class Breakable : MonoBehaviour
 {
     public AudioClip sound;
     public GameObject destroyedModel;
+    bool broken = false;
     public bool fragile = false;
     public void breakMe(){
-        
-        Debug.Log("break");
-        GameManager.Instance.OnBreakObject(this);
-        Instantiate(destroyedModel, transform.position, transform.rotation);
-        Destroy(gameObject);
-
+        if (broken == false)
+        {
+            broken = true;
+            Debug.Log("break");
+            GameManager.Instance.OnBreakObject(this);
+            Instantiate(destroyedModel, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }
