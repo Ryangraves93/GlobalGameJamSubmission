@@ -11,6 +11,19 @@ public class Hitbox : MonoBehaviour
     void Start()
     {
         m_SphereCollider = GetComponent<SphereCollider>();
+        m_SphereCollider.enabled = false;
+    }
+
+    public void Trigger()
+    {
+        m_SphereCollider.enabled = true;
+        StartCoroutine(StopTrigger());
+    }
+
+    IEnumerator StopTrigger()
+    {
+        yield return new WaitForSeconds(0.1f);
+        m_SphereCollider.enabled = false;
     }
 
     private void OnCollisionEnter(Collision col)
@@ -20,6 +33,18 @@ public class Hitbox : MonoBehaviour
         if (col.collider.tag == "breakable")
         {
             Debug.Log("Player is trying to break!");
+        }
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        Debug.Log(col);
+
+        if (col.tag == "breakable")
+        {
+            col.GetComponent<Breakable>().breakMe();
+
+            Debug.Log("Player is trying to break! - TRIGGERD");
         }
     }
 

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 {
     public bool attacking = false;
     public bool canAttack;
-    public GameObject hitBox;
+    
 
     public float Speed = 10f;
     public float Force = 100f;
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     CapsuleCollider m_capsuleCollider;
     MeshFilter m_meshFilter;
     MeshRenderer m_meshRenderer;
+    Hitbox m_hitBox;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour
         m_meshRenderer = GetComponent<MeshRenderer>();
 
         m_rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        m_hitBox = GetComponentInChildren<Hitbox>();
     }
 
     // Update is called once per frame
@@ -87,13 +90,15 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Rummage") && canAttack)
         {
-            Vector3 diff = GetClosestBreakable().transform.position - transform.position;
+            m_hitBox.Trigger();
 
-            if(diff.magnitude<attackRange)
-            {
-                StartCoroutine(attack());
-                GetClosestBreakable().GetComponent<Breakable>().breakMe();
-            }
+            //Vector3 diff = GetClosestBreakable().transform.position - transform.position;
+            //
+            //if(diff.magnitude<attackRange)
+            //{
+            //    StartCoroutine(attack());
+            //    GetClosestBreakable().GetComponent<Breakable>().breakMe();
+            //}
             
         }
     }
