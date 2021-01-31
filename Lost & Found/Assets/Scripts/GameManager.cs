@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public Image progressBar;
     public GameObject GameOverPanel;
     public float timeToSpawnEnemy = 10.0f;
+    float enemyTimer;
     public TextMeshProUGUI countdownText;
 
     public TextMeshProUGUI startText;
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         //progressBar.fillAmount = 0f;
         //m_audioSource = GetComponent<AudioSource>();
+        enemyTimer = timeToSpawnEnemy;
         CalculateScore();
         //SpawnEnemy();
         //StartCoroutine(DisplayStartText());
@@ -103,14 +105,15 @@ public class GameManager : MonoBehaviour
     }
     void Countdown()
     {
-        timeToSpawnEnemy -= 1 * Time.deltaTime;
-        countdownText.text = timeToSpawnEnemy.ToString("0");
+        enemyTimer -= 1 * Time.deltaTime;
+        countdownText.text = enemyTimer.ToString("0");
 
-        if (timeToSpawnEnemy <= 0 && countdownText)
+        if (enemyTimer <= 0 && countdownText)
         {
             countdownText.text = "";
             bSpawningEnemy = false;
             SpawnEnemy();
+            enemyTimer = timeToSpawnEnemy;
         }
 
     }
@@ -137,7 +140,7 @@ public class GameManager : MonoBehaviour
                 child.GetChild(0).gameObject.SetActive(true);
             }
         }
-        if (completionPercent > 20) { BeginLevelLoad(); completionPercent = 100; }
+        if (completionPercent > 5) { BeginLevelLoad(); completionPercent = 100; }
         
         percentText.text = (int)completionPercent+ "%";
         //progressBar.fillAmount += (percentIncrease/100);
@@ -161,5 +164,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelIndex);
+       bSpawningEnemy = true;
     }
 }
