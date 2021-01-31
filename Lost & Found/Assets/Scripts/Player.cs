@@ -100,12 +100,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Rummage") && canAttack)
         {
-            m_hitBox.Trigger();
+            //m_hitBox.Trigger();
             m_animator.SetBool("attacking", true);
+            canAttack = false;
         }
         else
         {
             m_animator.SetBool("attacking", false);
+
 
         }
         //m_animator.SetBool("attacking", m_hitBox.bAttackActive);
@@ -175,6 +177,14 @@ public class Player : MonoBehaviour
     void UpdateCamera()
     {
 
+    }
+
+    void OnHitboxActive()
+    {
+        m_hitBox.Trigger();
+
+        m_animator.SetBool("attacking", false);
+        canAttack = true;
     }
 }
 
