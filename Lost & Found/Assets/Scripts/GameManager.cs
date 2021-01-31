@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyToSpawn;
     public GameObject[] spawnLocations;
 
+    public Image progressBar;
     public GameObject GameOverPanel;
     public float timeToSpawnEnemy = 10.0f;
     public TextMeshProUGUI countdownText;
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        progressBar.fillAmount = 0f;
         m_audioSource = GetComponent<AudioSource>();
         CalculateScore();
         SpawnEnemy();
@@ -131,7 +133,8 @@ public class GameManager : MonoBehaviour
         }
         if (completionPercent > 99) { Debug.Log("LEVEL COMPLETE"); completionPercent = 100; }
         
-        percentText.text = "SMASHED: " +(int)completionPercent+ "%";
+        percentText.text = (int)completionPercent+ "%";
+        progressBar.fillAmount += (percentIncrease/100);
 
         // Rebuild Navmesh
         NavMeshBuilder.BuildNavMesh();

@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 1d82c6c295850594195eca27a1d0ebea
   - enabled: 1
-    path: Assets/Scenes/MVP 1.unity
-    guid: 2a90e75df4c717148be7128a5b079a87
+    path: Assets/Ryan/Prototype_Level _1 1.unity
+    guid: 92f82e2948c2ed24fb0f69d9822dee88
+  - enabled: 1
+    path: Assets/Ryan/Prototype_Level_2.unity
+    guid: 8f15067413abb3241a9914a70bbd75a1
+  - enabled: 1
+    path: Assets/Ryan/Prototype_Level_3.unity
+    guid: 474f5fc67d84759439d71412adf31f1a
   m_configObjects: {}
