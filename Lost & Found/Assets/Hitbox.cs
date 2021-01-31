@@ -35,7 +35,7 @@ public class Hitbox : MonoBehaviour
         m_SphereCollider.enabled = false;
         m_debrisPusherCollider.enabled = false;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         bAttackActive = false;
     }
 
@@ -51,13 +51,13 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col);
+        //Debug.Log(col);
 
         if (col.tag == "breakable")
         {
             col.GetComponent<Breakable>().breakMe();
 
-            Debug.Log("Player is trying to break! - TRIGGERD");
+            //Debug.Log("Player is trying to break! - TRIGGERD");
         }
     }
 

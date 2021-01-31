@@ -37,7 +37,7 @@ public class BrokenObject : MonoBehaviour
                     rb.isKinematic = true;
                     //child.gameObject.GetComponent<>
 
-                    Debug.Log("Setting isKinematic to false");
+                    //Debug.Log("Setting isKinematic to false");
                 }
                 else
                 {

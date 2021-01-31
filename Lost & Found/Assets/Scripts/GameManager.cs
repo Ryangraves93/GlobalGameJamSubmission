@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor.AI;
 using TMPro;
 
-
+[RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
     
@@ -27,7 +27,11 @@ public class GameManager : MonoBehaviour
 
     public float timeToSpawnEnemy = 10.0f;
     public TextMeshProUGUI countdownText;
+
+    public TextMeshProUGUI startText;
     bool bSpawningEnemy = false;
+
+    AudioSource m_audioSource;
 
 
     private void Awake()
@@ -51,13 +55,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        m_audioSource = GetComponent<AudioSource>();
         CalculateScore();
         SpawnEnemy();
+        StartCoroutine(DisplayStartText());
     }
 
     void MoveCamera()
     {
 
+    }
+
+    IEnumerator DisplayStartText()
+    {
+        startText.text = "Smash objects";
+        yield return new WaitForSeconds(4.0f);
+        startText.text = "";
     }
 
     public void GameOver()
@@ -93,7 +106,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void OnBreakObject()
+    public void PlayAudioFromBreaking(Breakable brokenObject)
+    {
+        m_audioSource.clip = brokenObject.sound;
+        m_audioSource.Play();
+    }
+
+
+    public void OnBreakObject(Breakable NewlyBrokenObject)
     {
         completionPercent += percentIncrease;
         if(completionPercent > 90)

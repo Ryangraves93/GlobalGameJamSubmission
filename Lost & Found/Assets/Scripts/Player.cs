@@ -101,8 +101,14 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Rummage") && canAttack)
         {
             m_hitBox.Trigger();
+            m_animator.SetBool("attacking", true);
         }
-        m_animator.SetBool("attacking", m_hitBox.bAttackActive);
+        else
+        {
+            m_animator.SetBool("attacking", false);
+
+        }
+        //m_animator.SetBool("attacking", m_hitBox.bAttackActive);
 
 
     }
@@ -147,35 +153,27 @@ public class Player : MonoBehaviour
         return closest;
     }
 
-    //private void OnCollisionEnter(Collision col)
-    //{
-    //   Debug.Log("Player is trying to break!");
-
-    //   if(col.collider.tag == "breakable")
-    //   {
-    //      if (attacking || col.collider.GetComponent<Breakable>().fragile)
-    //       {
-    //          col.collider.GetComponent<Breakable>().breakMe();
-    //      }
-    //   }
-
-    // }
-
-
     void DoMovement_Force()
     {
 
-        float RightInput = Input.GetAxisRaw("Horizontal");
-        float ForwardInput = Input.GetAxisRaw("Vertical");
+        float RightInput = Input.GetAxis("Horizontal");
+        float ForwardInput = Input.GetAxis("Vertical");
 
         Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
         
-        MovementDirection = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput).normalized;
+        MovementDirection = ((MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput)).normalized;
 
 
-        float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
+        //float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
+        float InputStrength = Mathf.Clamp(Mathf.Sqrt(RightInput*RightInput + ForwardInput * ForwardInput), 0.0f, 1.0f);
+
 
         m_rb.AddForce(MovementDirection * Force * InputStrength * Time.deltaTime);
+
+    }
+
+    void UpdateCamera()
+    {
 
     }
 }
