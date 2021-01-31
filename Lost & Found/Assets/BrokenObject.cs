@@ -5,7 +5,7 @@ using UnityEngine;
 public class BrokenObject : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void OnActivate()
+    public void Awake()
     {
         StartCoroutine(CheckFragmentsCoroutine());
     }
