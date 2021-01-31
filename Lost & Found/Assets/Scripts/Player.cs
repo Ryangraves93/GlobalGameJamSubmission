@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canAttack = !attacking;
+        canAttack = !m_hitBox.bAttackActive;
 
         if (UseForce)
         {
@@ -100,18 +100,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Rummage") && canAttack)
         {
-            m_animator.SetBool("attacking", true);
             m_hitBox.Trigger();
-
-            Vector3 diff = GetClosestBreakable().transform.position - transform.position;
-            
-            if(diff.magnitude<attackRange)
-            {
-                StartCoroutine(attack());
-                GetClosestBreakable().GetComponent<Breakable>().breakMe();
-            }
         }
-        m_animator.SetBool("attacking", false);
+        m_animator.SetBool("attacking", m_hitBox.bAttackActive);
 
 
     }

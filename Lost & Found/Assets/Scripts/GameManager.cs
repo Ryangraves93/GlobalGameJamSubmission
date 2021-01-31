@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.AI;
 using TMPro;
 
 
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { return _instance; } }
 
+    //public NavMeshSurface surface;
 
     public float transitionTime = 1f;
     public Transform breakablesContainer;
@@ -97,6 +99,9 @@ public class GameManager : MonoBehaviour
         if (completionPercent > 99) { Debug.Log("LEVEL COMPLETE"); completionPercent = 100; }
         
         percentText.text = "SMASHED: " +(int)completionPercent+ "%";
+
+        // Rebuild Navmesh
+        NavMeshBuilder.BuildNavMesh();
     }
 
     public void SpawnEnemy()
