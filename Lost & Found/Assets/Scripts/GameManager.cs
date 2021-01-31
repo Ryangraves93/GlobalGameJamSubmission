@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyToSpawn;
     public GameObject[] spawnLocations;
 
+    public GameObject GameOverPanel;
     public float timeToSpawnEnemy = 10.0f;
     public TextMeshProUGUI countdownText;
 
@@ -75,7 +76,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("GAME OVER");
+        GameOverPanel.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void LoadLevel()
