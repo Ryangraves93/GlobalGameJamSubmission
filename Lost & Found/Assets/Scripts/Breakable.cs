@@ -9,26 +9,13 @@ public class Breakable : MonoBehaviour
     bool broken = false;
     public bool fragile = false;
 
-    BrokenObject m_brokenObject;
-    GameObject m_brokenGameObject;
-
-    void Start()
-    {
-        m_brokenGameObject = (GameObject)Instantiate(destroyedModel, transform.position, transform.rotation);
-        m_brokenObject = m_brokenGameObject.GetComponent<BrokenObject>();
-        m_brokenGameObject.SetActive(false);
-    }
-
     public void breakMe(){
         if (broken == false)
         {
             broken = true;
             Debug.Log("break");
             GameManager.Instance.OnBreakObject(this);
-            //Instantiate(destroyedModel, transform.position, transform.rotation);
-            m_brokenGameObject.SetActive(true);
-            m_brokenObject.OnActivate();
-
+            Instantiate(destroyedModel, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

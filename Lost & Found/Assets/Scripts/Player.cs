@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
 
     Vector3 MovementDirection;
 
-  
 
     Rigidbody m_rb;
     CapsuleCollider m_capsuleCollider;
@@ -57,7 +56,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canAttack = !m_hitBox.bAttackActive;
+        canAttack = !attacking;
 
         if (UseForce)
         {
@@ -65,7 +64,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-
             float RightInput = Input.GetAxisRaw("Horizontal");
             float ForwardInput = Input.GetAxisRaw("Vertical");
 

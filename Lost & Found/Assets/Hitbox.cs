@@ -8,35 +8,56 @@ public class Hitbox : MonoBehaviour
     SphereCollider m_SphereCollider;
     SphereCollider m_debrisPusherCollider;
 
-    public bool bAttackActive;
+
+    public List<Collider> m_Colliders;
+
+    //public bool bAttackActive;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_Colliders = new List<Collider>();
+
         m_SphereCollider = GetComponent<SphereCollider>();
         m_debrisPusherCollider = GetComponentInChildren<SphereCollider>();
 
-        m_SphereCollider.enabled = false;
-        m_debrisPusherCollider.enabled = false;
-        bAttackActive = false;
+        m_SphereCollider.enabled = true;
+        m_debrisPusherCollider.enabled = true;
+        //bAttackActive = false;
     }
 
     public void Trigger()
     {
-        m_SphereCollider.enabled = true;
-        m_debrisPusherCollider.enabled = true;
-        bAttackActive = true;
-        StartCoroutine(StopTrigger());
+        foreach (Collider col in m_Colliders)
+        {
+            Breakable breakable = col.GetComponent<Breakable>();
+            if (breakable)
+            {
+                breakable.breakMe();
+            }
+        }
+        m_Colliders.Clear();
+
+        //Debug.Log("Triggered");
+
+
+
+        //m_SphereCollider.enabled = true;
+        //m_debrisPusherCollider.enabled = true;
+        //bAttackActive = true;
+
+
+        //StartCoroutine(StopTrigger());
     }
 
     IEnumerator StopTrigger()
     {
-        yield return new WaitForSeconds(0.01f);
-        m_SphereCollider.enabled = false;
-        m_debrisPusherCollider.enabled = false;
-        bAttackActive = false;
-
-        //yield return new WaitForSeconds(0.1f);
+          yield return new WaitForSeconds(0.01f);
+    //    m_SphereCollider.enabled = false;
+          m_debrisPusherCollider.enabled = false;
+    //    bAttackActive = false;
+    //
+    //    //yield return new WaitForSeconds(0.1f);
     }
 
     private void OnCollisionEnter(Collision col)
@@ -53,12 +74,22 @@ public class Hitbox : MonoBehaviour
     {
         //Debug.Log(col);
 
+        
+
         if (col.tag == "breakable")
         {
-            col.GetComponent<Breakable>().breakMe();
+            m_Colliders.Add(col);
 
-            //Debug.Log("Player is trying to break! - TRIGGERD");
+            //col.GetComponent<Breakable>().breakMe();
+
+            Debug.Log("Added " + col);
         }
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        m_Colliders.Remove(col);
+        Debug.Log("removed " + col);
     }
 
 }

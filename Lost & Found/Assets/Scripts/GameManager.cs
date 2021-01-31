@@ -57,11 +57,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        progressBar.fillAmount = 0f;
-        m_audioSource = GetComponent<AudioSource>();
-        CalculateScore();
-        SpawnEnemy();
-        StartCoroutine(DisplayStartText());
+        //progressBar.fillAmount = 0f;
+        //m_audioSource = GetComponent<AudioSource>();
+        //CalculateScore();
+        //SpawnEnemy();
+        //StartCoroutine(DisplayStartText());
     }
 
     void MoveCamera()
@@ -134,10 +134,10 @@ public class GameManager : MonoBehaviour
         if (completionPercent > 99) { Debug.Log("LEVEL COMPLETE"); completionPercent = 100; }
         
         percentText.text = (int)completionPercent+ "%";
-        progressBar.fillAmount += (percentIncrease/100);
+        //progressBar.fillAmount += (percentIncrease/100);
 
         // Rebuild Navmesh
-        NavMeshBuilder.BuildNavMesh();
+        //NavMeshBuilder.BuildNavMesh();
     }
 
     public void SpawnEnemy()
