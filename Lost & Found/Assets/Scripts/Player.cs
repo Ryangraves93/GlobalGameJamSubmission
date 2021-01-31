@@ -14,9 +14,14 @@ public class Player : MonoBehaviour
 
     public float Speed = 10f;
     public float Force = 100f;
+
+    public float RotationInterpSpeed = 10.0f;
+
     public float attackRange = 5f;
 
     public bool UseForce = true;
+
+    Vector3 MovementDirection;
 
     Rigidbody m_rb;
     CapsuleCollider m_capsuleCollider;
@@ -64,6 +69,16 @@ public class Player : MonoBehaviour
             transform.Translate(MovementDelta);
         }
 
+        // Do Rotation
+        // MovementDirection = m_rb.velocity; // We could use the velocity, but when you slide against walls, i think it's better to face into them
+        MovementDirection.y = 0;
+        if (MovementDirection.sqrMagnitude < 0.1) 
+        {
+            MovementDirection = transform.forward;
+        }
+        Quaternion TargetRotation = Quaternion.LookRotation(MovementDirection, Vector3.up);
+        Quaternion IntermediateRotation = Quaternion.Slerp(transform.rotation, TargetRotation, RotationInterpSpeed * Time.deltaTime);
+        transform.rotation = IntermediateRotation;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -143,9 +158,7 @@ public class Player : MonoBehaviour
 
         Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
 
-        Vector3 MovementDirection = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput);
-
-        MovementDirection.Normalize();
+        MovementDirection = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput).normalized;
 
         float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
 

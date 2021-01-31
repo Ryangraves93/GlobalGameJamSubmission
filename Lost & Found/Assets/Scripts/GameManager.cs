@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Instantiate(enemyToSpawn, spawnLocations[Random.Range(0,spawnLocations.Length)].transform.position, Quaternion.identity);
+        //Instantiate(enemyToSpawn, spawnLocations[Random.Range(0,spawnLocations.Length)].transform.position, Quaternion.identity);
         //yield return new WaitForSeconds(2.0f);
        // StartCoroutine(SpawnEnemy());
     }
