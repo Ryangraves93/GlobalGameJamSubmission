@@ -6,17 +6,22 @@ public class Hitbox : MonoBehaviour
 {
 
     SphereCollider m_SphereCollider;
+    SphereCollider m_debrisPusherCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         m_SphereCollider = GetComponent<SphereCollider>();
+        m_debrisPusherCollider = GetComponentInChildren<SphereCollider>();
+
         m_SphereCollider.enabled = false;
+        m_debrisPusherCollider.enabled = false;
     }
 
     public void Trigger()
     {
         m_SphereCollider.enabled = true;
+        m_debrisPusherCollider.enabled = true;
         StartCoroutine(StopTrigger());
     }
 
@@ -24,6 +29,7 @@ public class Hitbox : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         m_SphereCollider.enabled = false;
+        m_debrisPusherCollider.enabled = false;
     }
 
     private void OnCollisionEnter(Collision col)
