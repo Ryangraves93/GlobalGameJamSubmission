@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7861108498576000827}
   - component: {fileID: 2194213638437733935}
   - component: {fileID: 1156317442150955872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 544362735361486225}
   - component: {fileID: 6778178013457235860}
   - component: {fileID: 5448101514746306167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 2302105075777461400}
   - component: {fileID: 5978822129562332006}
   - component: {fileID: 6386590014480484477}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 503409739424512192}
   - component: {fileID: 3334531940036510074}
   - component: {fileID: 9058752156062247512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 1308836009384746582}
   - component: {fileID: 1640000920444297132}
   - component: {fileID: 2389630300749129383}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 2486175251412814423}
   - component: {fileID: 8272911211085994300}
   - component: {fileID: 5507364573852866632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 5747356662585402663}
   - component: {fileID: 7679356216653643997}
   - component: {fileID: 1009109595174504964}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 4211056421710459440}
   - component: {fileID: 7989612679038946225}
   - component: {fileID: 4935216584196885643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +909,7 @@ GameObject:
   - component: {fileID: 6645589111681614318}
   - component: {fileID: 119647430546164860}
   - component: {fileID: 799099867744498023}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1021,7 +1021,7 @@ GameObject:
   - component: {fileID: 4969709135720437449}
   - component: {fileID: 744164586142915046}
   - component: {fileID: 6427243237124185621}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 3204749814740717010}
   - component: {fileID: 4072790031380840427}
   - component: {fileID: 7164842872451967406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 4497720940179051975}
   - component: {fileID: 8457182347624183011}
   - component: {fileID: 291157270085647406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1357,7 +1357,7 @@ GameObject:
   - component: {fileID: 4361536300635834928}
   - component: {fileID: 2277322435881766453}
   - component: {fileID: 5911882181510287681}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1465,6 +1465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9212567850819477194}
+  - component: {fileID: 1596090859665931920}
   m_Layer: 0
   m_Name: LoungeDesignChair_broken
   m_TagString: Untagged
@@ -1500,6 +1501,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1596090859665931920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399860964437460080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84db1a4b21ada244b7676dff225e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8753486563064280344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1526,7 @@ GameObject:
   - component: {fileID: 7262782595600295230}
   - component: {fileID: 1742854474685612957}
   - component: {fileID: 1647748321203983449}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loungeDesignChair.001_cell.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

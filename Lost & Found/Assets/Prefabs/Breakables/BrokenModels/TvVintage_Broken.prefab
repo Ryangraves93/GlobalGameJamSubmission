@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2384486419668150941}
   - component: {fileID: 5675827110155138206}
   - component: {fileID: 5092682313860764611}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: televisionVintage.001_cell.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,6 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1602542732419633791}
+  - component: {fileID: 5155478674282796672}
   m_Layer: 0
   m_Name: TvVintage_Broken
   m_TagString: Untagged
@@ -149,6 +150,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &5155478674282796672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123078558370875589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84db1a4b21ada244b7676dff225e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3976602011571265449
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +175,7 @@ GameObject:
   - component: {fileID: 7252746197216482204}
   - component: {fileID: 8905326990335681698}
   - component: {fileID: 8702115502032868762}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: televisionVintage.001_cell.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +290,7 @@ GameObject:
   - component: {fileID: 353425866868090928}
   - component: {fileID: 8193095103711118074}
   - component: {fileID: 6748281007290216046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: televisionVintage.001_cell.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +404,7 @@ GameObject:
   - component: {fileID: 7791552089025510745}
   - component: {fileID: 4274592266211458705}
   - component: {fileID: 774534658817006177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: televisionVintage.001_cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +519,7 @@ GameObject:
   - component: {fileID: 799738883219340752}
   - component: {fileID: 5256037836626760216}
   - component: {fileID: 2625543100086253211}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: televisionVintage.001_cell.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
