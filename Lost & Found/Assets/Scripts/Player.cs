@@ -23,11 +23,14 @@ public class Player : MonoBehaviour
 
     Vector3 MovementDirection;
 
+  
+
     Rigidbody m_rb;
     CapsuleCollider m_capsuleCollider;
     MeshFilter m_meshFilter;
     MeshRenderer m_meshRenderer;
     Hitbox m_hitBox;
+    Animator m_animator;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
         m_capsuleCollider = GetComponent<CapsuleCollider>();
         m_meshFilter = GetComponent<MeshFilter>();
         m_meshRenderer = GetComponent<MeshRenderer>();
+        m_animator = GetComponent<Animator>();
 
         m_rb.constraints = RigidbodyConstraints.FreezeRotation;
 
@@ -60,6 +64,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+
             float RightInput = Input.GetAxisRaw("Horizontal");
             float ForwardInput = Input.GetAxisRaw("Vertical");
 
@@ -75,32 +80,39 @@ public class Player : MonoBehaviour
         // Do Rotation
         // MovementDirection = m_rb.velocity; // We could use the velocity, but when you slide against walls, i think it's better to face into them
         MovementDirection.y = 0;
-        if (MovementDirection.sqrMagnitude < 0.1) 
+        if (MovementDirection.sqrMagnitude < 0.1)
         {
             MovementDirection = transform.forward;
+
+            m_animator.SetBool("walking", false);
+        }
+
+        else
+        {
+            m_animator.SetBool("walking", true);
         }
         Quaternion TargetRotation = Quaternion.LookRotation(MovementDirection, Vector3.up);
         Quaternion IntermediateRotation = Quaternion.Slerp(transform.rotation, TargetRotation, RotationInterpSpeed * Time.deltaTime);
         transform.rotation = IntermediateRotation;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-           // GameManager.Instance.SpawnEnemy();
-        }
+
 
         if (Input.GetButtonDown("Rummage") && canAttack)
         {
+            m_animator.SetBool("attacking", true);
             m_hitBox.Trigger();
 
-            //Vector3 diff = GetClosestBreakable().transform.position - transform.position;
-            //
-            //if(diff.magnitude<attackRange)
-            //{
-            //    StartCoroutine(attack());
-            //    GetClosestBreakable().GetComponent<Breakable>().breakMe();
-            //}
+            Vector3 diff = GetClosestBreakable().transform.position - transform.position;
             
+            if(diff.magnitude<attackRange)
+            {
+                StartCoroutine(attack());
+                GetClosestBreakable().GetComponent<Breakable>().breakMe();
+            }
         }
+        m_animator.SetBool("attacking", false);
+
+
     }
 
     Quaternion GetMovementFrame(Transform Frame)
@@ -115,9 +127,11 @@ public class Player : MonoBehaviour
     IEnumerator attack()
     {
         attacking = true;
+    
         //hitBox.GetComponent<HitBox>().attacking = true;
         yield return new WaitForSeconds(0.5f);
         attacking = false;
+        
         //hitBox.GetComponent<HitBox>().attacking = false;
     }
 
@@ -158,12 +172,14 @@ public class Player : MonoBehaviour
 
     void DoMovement_Force()
     {
+
         float RightInput = Input.GetAxisRaw("Horizontal");
         float ForwardInput = Input.GetAxisRaw("Vertical");
 
         Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
-
+        
         MovementDirection = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput).normalized;
+
 
         float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
 
