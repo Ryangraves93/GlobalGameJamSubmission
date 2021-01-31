@@ -96,6 +96,13 @@ public class GameManager : MonoBehaviour
     public void OnBreakObject()
     {
         completionPercent += percentIncrease;
+        if(completionPercent > 90)
+        {
+            foreach (Transform child in breakablesContainer)
+            {
+                child.GetChild(0).gameObject.SetActive(true);
+            }
+        }
         if (completionPercent > 99) { Debug.Log("LEVEL COMPLETE"); completionPercent = 100; }
         
         percentText.text = "SMASHED: " +(int)completionPercent+ "%";
