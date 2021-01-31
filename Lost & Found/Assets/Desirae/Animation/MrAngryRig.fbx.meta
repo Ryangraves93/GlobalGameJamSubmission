@@ -6,7 +6,12 @@ ModelImporter:
   - first:
       74: 6217181996417942519
     second: MrAngry_animReady
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 18d702d3a28326347a5cd264acdde2c1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
