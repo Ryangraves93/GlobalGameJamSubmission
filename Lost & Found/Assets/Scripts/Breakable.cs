@@ -6,8 +6,9 @@ public class Breakable : MonoBehaviour
 {
     public AudioClip sound;
     public GameObject destroyedModel;
-    bool broken = false;
     public bool fragile = false;
+    public bool bPoliceCanBreak = false;
+    bool broken = false;
 
     public void breakMe(){
         if (broken == false)

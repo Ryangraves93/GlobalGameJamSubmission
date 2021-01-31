@@ -143,6 +143,7 @@ MonoBehaviour:
   sound: {fileID: 0}
   destroyedModel: {fileID: 2164983673790871776, guid: 825ecba2ceda6864885fd418850547e2, type: 3}
   fragile: 0
+  bPoliceCanBreak: 1
 --- !u!65 &3314004491519863762
 BoxCollider:
   m_ObjectHideFlags: 0

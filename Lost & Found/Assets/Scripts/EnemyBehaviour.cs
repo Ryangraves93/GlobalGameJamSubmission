@@ -44,6 +44,16 @@ public class EnemyBehaviour : MonoBehaviour
         {
             GameManager.Instance.GameOver();
         }
+
+        // This lets cops break through doors, as long as they believe they can walk through (make sure door's navmesh is walkable)
+        if (collision.gameObject.CompareTag("breakable"))
+        {
+            Breakable breakableComponent = collision.gameObject.GetComponent<Breakable>();
+            if (breakableComponent && breakableComponent.bPoliceCanBreak)
+            {
+                breakableComponent.breakMe();
+            }
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

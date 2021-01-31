@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DisplayStartText()
     {
-        startText.text = "Smash objects";
+        startText.text = "Search objects";
         yield return new WaitForSeconds(4.0f);
         startText.text = "";
     }
@@ -135,12 +135,24 @@ public class GameManager : MonoBehaviour
         completionPercent += percentIncrease;
         if(completionPercent > 90)
         {
+            // Activate Halos on remaining breakables
             foreach (Transform child in breakablesContainer)
             {
-                child.GetChild(0).gameObject.SetActive(true);
+                if (child.childCount > 0)
+                {
+                    child.GetChild(0).gameObject.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogError("This 'breakable' (in breakablesContainer) has no child. Tried to activate Halo, but failed. " + child);
+                }
             }
         }
-        if (completionPercent > 5) { BeginLevelLoad(); completionPercent = 100; }
+        if (completionPercent >= 100) 
+        { 
+            BeginLevelLoad(); 
+            //completionPercent = 100; 
+        }
         
         percentText.text = (int)completionPercent+ "%";
         //progressBar.fillAmount += (percentIncrease/100);
