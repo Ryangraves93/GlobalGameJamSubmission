@@ -101,8 +101,14 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Rummage") && canAttack)
         {
             m_hitBox.Trigger();
+            m_animator.SetBool("attacking", true);
         }
-        m_animator.SetBool("attacking", m_hitBox.bAttackActive);
+        else
+        {
+            m_animator.SetBool("attacking", false);
+
+        }
+        //m_animator.SetBool("attacking", m_hitBox.bAttackActive);
 
 
     }
@@ -155,7 +161,7 @@ public class Player : MonoBehaviour
 
         Quaternion MovementQuat = GetMovementFrame(Camera.main.transform);
         
-        MovementDirection = (MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput).normalized;
+        MovementDirection = ((MovementQuat * Vector3.forward * ForwardInput) + (MovementQuat * Vector3.right * RightInput)).normalized;
 
 
         //float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
