@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     public float RotationInterpSpeed = 10.0f;
 
+    public float CameraInterpSpeed = 10.0f;
+
     public float attackRange = 5f;
 
     public bool UseForce = true;
@@ -85,7 +87,6 @@ public class Player : MonoBehaviour
 
             m_animator.SetBool("walking", false);
         }
-
         else
         {
             m_animator.SetBool("walking", true);
@@ -110,6 +111,8 @@ public class Player : MonoBehaviour
         }
         //m_animator.SetBool("attacking", m_hitBox.bAttackActive);
 
+
+        UpdateCamera();
 
     }
 
@@ -174,7 +177,26 @@ public class Player : MonoBehaviour
 
     void UpdateCamera()
     {
+        // We want to calculate the desired camera location without changing its rotation
+        // Then we can slowly lerp to the position
 
+
+        // We get the vector from camera location to player location.
+        Vector3 CamToPlayer = transform.position - Camera.main.transform.position;
+
+        // Then we can project this vector onto the camera's forward vector.
+        Vector3 CamToPlayerProjection = Vector3.Project(CamToPlayer, Camera.main.transform.forward);
+
+        // (This will give us the exact distance from the player that we need the camera.)
+
+        // Then we just reverse this vector from the play position to find the desired camera position
+        Vector3 DesiredCameraPosition = transform.position - CamToPlayerProjection;
+
+
+        // Now interpolate
+        Vector3 IntermediateCameraPosition = Vector3.Lerp(Camera.main.transform.position, DesiredCameraPosition, CameraInterpSpeed * Time.deltaTime);
+
+        Camera.main.transform.position = IntermediateCameraPosition;
     }
 
     void OnHitboxActive()
