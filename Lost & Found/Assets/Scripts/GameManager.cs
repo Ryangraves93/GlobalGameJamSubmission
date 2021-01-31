@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
 
     public void OnBreakObject(Breakable NewlyBrokenObject)
     {
+        PlayAudioFromBreaking(NewlyBrokenObject);
         completionPercent += percentIncrease;
         if(completionPercent > 90)
         {
