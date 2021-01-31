@@ -35,7 +35,7 @@ public class Hitbox : MonoBehaviour
         m_SphereCollider.enabled = false;
         m_debrisPusherCollider.enabled = false;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         bAttackActive = false;
     }
 
