@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("started");
         IntializeComponents();
 
     }
@@ -179,7 +178,6 @@ public class Player : MonoBehaviour
     {
         // We want to calculate the desired camera location without changing its rotation
         // Then we can slowly lerp to the position
-
 
         // We get the vector from camera location to player location.
         Vector3 CamToPlayer = transform.position - Camera.main.transform.position;

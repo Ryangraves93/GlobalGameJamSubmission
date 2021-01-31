@@ -5,6 +5,8 @@ using UnityEngine;
 public class Breakable : MonoBehaviour
 {
     public AudioClip sound;
+    public SoundBank.SoundType soundType;
+
     public GameObject destroyedModel;
     public bool fragile = false;
     public bool bPoliceCanBreak = false;
@@ -14,7 +16,6 @@ public class Breakable : MonoBehaviour
         if (broken == false)
         {
             broken = true;
-            Debug.Log("break");
             GameManager.Instance.OnBreakObject(this);
             Instantiate(destroyedModel, transform.position, transform.rotation);
             Destroy(gameObject);

@@ -143,8 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 0}
+  soundType: 1
   destroyedModel: {fileID: 4872068737000464250, guid: bd4d60945b1ee9b42949173128b58d63, type: 3}
   fragile: 0
+  bPoliceCanBreak: 0
 --- !u!65 &7032516474067519231
 BoxCollider:
   m_ObjectHideFlags: 0

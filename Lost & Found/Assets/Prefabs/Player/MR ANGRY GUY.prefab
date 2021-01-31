@@ -86,6 +86,7 @@ MonoBehaviour:
   Speed: 100
   Force: 10000
   RotationInterpSpeed: 10
+  CameraInterpSpeed: 10
   attackRange: 5
   UseForce: 1
 --- !u!33 &7470848090634235380

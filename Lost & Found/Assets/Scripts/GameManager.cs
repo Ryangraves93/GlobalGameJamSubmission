@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI startText;
     bool bSpawningEnemy = false;
 
-    AudioSource m_audioSource;
+    public SoundBank m_soundBank;
 
 
     private void Awake()
@@ -60,6 +60,9 @@ public class GameManager : MonoBehaviour
     {
         //progressBar.fillAmount = 0f;
         //m_audioSource = GetComponent<AudioSource>();
+
+        m_soundBank = GetComponentInChildren<SoundBank>();
+
         enemyTimer = timeToSpawnEnemy;
        
         breakablesRemaining = breakablesContainer.childCount;
@@ -113,47 +116,54 @@ public class GameManager : MonoBehaviour
 
     public void PlayAudioFromBreaking(Breakable brokenObject)
     {
-        m_audioSource.clip = brokenObject.sound;
-        if (m_audioSource.clip)
-        {
-            m_audioSource.Play();
-        }
+        //m_audioSource.clip = brokenObject.sound;
+        //if (m_audioSource.clip)
+        //{
+        //    m_audioSource.Play();
+        //}
         
     }
 
 
     public void OnBreakObject(Breakable NewlyBrokenObject)
     {
-        if (NewlyBrokenObject.transform.IsChildOf(breakablesContainer))
+        if (NewlyBrokenObject)
         {
-            breakablesRemaining -= 1;
+            // Play sound
+            m_soundBank.PlaySound(NewlyBrokenObject.soundType);
 
-            completionPercent = 100 * (1 - (breakablesRemaining / breakablesTotal));
-
-            if (completionPercent > 90)
+            // update completion if this was an objective
+            if (NewlyBrokenObject.transform.IsChildOf(breakablesContainer))
             {
-                // Activate Halos on remaining breakables
-                foreach (Transform child in breakablesContainer)
+                breakablesRemaining -= 1;
+
+                completionPercent = 100 * (1 - (breakablesRemaining / breakablesTotal));
+
+                if (completionPercent > 90)
                 {
-                    if (child.childCount > 0)
+                    // Activate Halos on remaining breakables
+                    foreach (Transform child in breakablesContainer)
                     {
-                        child.GetChild(0).gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        Debug.LogError("This 'breakable' (in breakablesContainer) has no child. Tried to activate Halo, but failed. " + child);
+                        if (child.childCount > 0)
+                        {
+                            child.GetChild(0).gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            Debug.LogError("This 'breakable' (in breakablesContainer) has no child. Tried to activate Halo, but failed. " + child);
+                        }
                     }
                 }
+                if (completionPercent >= 100.0f)
+                {
+                    BeginLevelLoad();
+                }
+
+                percentText.text = (int)completionPercent + "%";
+
+                //progressBar.fillAmount += (percentIncrease/100);
+
             }
-            if (completionPercent >= 100.0f)
-            {
-                BeginLevelLoad();
-            }
-
-            percentText.text = (int)completionPercent + "%";
-
-            //progressBar.fillAmount += (percentIncrease/100);
-
         }
     }
 

@@ -7,18 +7,27 @@ using UnityEngine.AI;
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(AudioSource))]
 public class EnemyBehaviour : MonoBehaviour
 {
+    public AudioClip m_sirenClip;
+    public AudioClip m_doorBreakClip;
+
     // Start is called before the first frame update
     NavMeshAgent m_agent;
     MeshRenderer m_mesh;
     MeshFilter m_meshFilter;
     CapsuleCollider m_capsuleCollider;
+    AudioSource m_audioSource;
     public Transform destination;
 
     void Start()
     {
         IntializeComponents();
+
+        m_audioSource.clip = m_sirenClip;
+        m_audioSource.loop = true;
+        m_audioSource.Play();
     }
 
     private void Awake()
@@ -30,7 +39,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveAgent();   
+        MoveAgent();
     }
 
     void MoveAgent()
@@ -52,6 +61,8 @@ public class EnemyBehaviour : MonoBehaviour
             if (breakableComponent && breakableComponent.bPoliceCanBreak)
             {
                 breakableComponent.breakMe();
+
+                m_audioSource.PlayOneShot(m_doorBreakClip, 1.0f);
             }
         }
     }
@@ -74,5 +85,7 @@ public class EnemyBehaviour : MonoBehaviour
         m_mesh = GetComponent<MeshRenderer>();
         m_meshFilter = GetComponent<MeshFilter>();
         m_capsuleCollider = GetComponent<CapsuleCollider>();
+        m_audioSource = GetComponent<AudioSource>();
     }
+
 }
