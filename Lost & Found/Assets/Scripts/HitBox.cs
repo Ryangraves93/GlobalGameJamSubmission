@@ -13,8 +13,6 @@ public class HitBox : MonoBehaviour
     }
     private void OnCollisionEnter(Collision col)
     {
-        
-
         if (col.collider.tag == "breakable")
         {
             Debug.Log("Player is trying to break!");
