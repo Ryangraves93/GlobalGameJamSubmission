@@ -42,7 +42,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Test");
+            GameManager.Instance.GameOver();
         }
     }
     private void OnTriggerEnter(Collider other)

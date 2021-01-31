@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +23,11 @@ public class GameManager : MonoBehaviour
     public GameObject enemyToSpawn;
     public GameObject[] spawnLocations;
 
+    public float timeToSpawnEnemy = 10.0f;
+    public TextMeshProUGUI countdownText;
+    bool bSpawningEnemy = false;
+
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -30,6 +37,13 @@ public class GameManager : MonoBehaviour
         else
         {
             _instance = this;
+        }
+    }
+    private void Update()
+    {
+        if (bSpawningEnemy)
+        {
+            Countdown();
         }
     }
 
@@ -58,6 +72,19 @@ public class GameManager : MonoBehaviour
 
         percentIncrease = 100 / breakablesCount;
     }
+    void Countdown()
+    {
+        timeToSpawnEnemy -= 1 * Time.deltaTime;
+        countdownText.text = timeToSpawnEnemy.ToString("0");
+
+        if (timeToSpawnEnemy <= 0 && countdownText)
+        {
+            countdownText.text = "";
+            bSpawningEnemy = false;
+            SpawnEnemy();
+        }
+
+    }
 
     public void OnBreakObject()
     {
@@ -69,9 +96,12 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        //Instantiate(enemyToSpawn, spawnLocations[Random.Range(0,spawnLocations.Length)].transform.position, Quaternion.identity);
+        if (spawnLocations.Length != 0)
+        {
+            Instantiate(enemyToSpawn, spawnLocations[Random.Range(0, spawnLocations.Length)].transform.position, Quaternion.identity);
+        }
         //yield return new WaitForSeconds(2.0f);
-       // StartCoroutine(SpawnEnemy());
+        // StartCoroutine(SpawnEnemy());
     }
 
     IEnumerator LoadLevel(int levelIndex)
