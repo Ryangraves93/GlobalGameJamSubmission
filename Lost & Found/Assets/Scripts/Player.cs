@@ -167,7 +167,6 @@ public class Player : MonoBehaviour
         //float InputStrength = new Vector2(RightInput, ForwardInput).magnitude;
         float InputStrength = Mathf.Clamp(Mathf.Sqrt(RightInput*RightInput + ForwardInput * ForwardInput), 0.0f, 1.0f);
 
-        Debug.Log( "str: " + InputStrength);
 
         m_rb.AddForce(MovementDirection * Force * InputStrength * Time.deltaTime);
 
