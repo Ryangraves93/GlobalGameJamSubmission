@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void OnBreakObject()
+    public void OnBreakObject(Breakable NewlyBrokenObject)
     {
         completionPercent += percentIncrease;
         if(completionPercent > 90)
