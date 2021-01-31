@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
            // GameManager.Instance.SpawnEnemy();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canAttack)
+        if (Input.GetButtonDown("Rummage") && canAttack)
         {
             Vector3 diff = GetClosestBreakable().transform.position - transform.position;
 
