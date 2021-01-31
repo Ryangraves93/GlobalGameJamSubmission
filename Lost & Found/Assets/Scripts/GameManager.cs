@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         //CalculateScore();
         //SpawnEnemy();
         //StartCoroutine(DisplayStartText());
+        GameManager.Instance.bSpawningEnemy = true;
     }
 
     void MoveCamera()
@@ -117,13 +118,17 @@ public class GameManager : MonoBehaviour
     public void PlayAudioFromBreaking(Breakable brokenObject)
     {
         m_audioSource.clip = brokenObject.sound;
-        m_audioSource.Play();
+        if (m_audioSource.clip)
+        {
+            m_audioSource.Play();
+        }
+        
     }
 
 
     public void OnBreakObject(Breakable NewlyBrokenObject)
     {
-        PlayAudioFromBreaking(NewlyBrokenObject);
+       // PlayAudioFromBreaking(NewlyBrokenObject);
         completionPercent += percentIncrease;
         if(completionPercent > 90)
         {
@@ -132,7 +137,7 @@ public class GameManager : MonoBehaviour
                 child.GetChild(0).gameObject.SetActive(true);
             }
         }
-        if (completionPercent > 99) { Debug.Log("LEVEL COMPLETE"); completionPercent = 100; }
+        if (completionPercent > 99) { LoadLevel(); completionPercent = 100; }
         
         percentText.text = (int)completionPercent+ "%";
         //progressBar.fillAmount += (percentIncrease/100);
