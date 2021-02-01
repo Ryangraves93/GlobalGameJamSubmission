@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor.AI;
 using TMPro;
 
 [RequireComponent(typeof(AudioSource))]
@@ -27,9 +26,11 @@ public class GameManager : MonoBehaviour
 
     public Image progressBar;
     public GameObject GameOverPanel;
+    public GameObject NextLevelPanel;
     public float timeToSpawnEnemy = 10.0f;
     float enemyTimer;
     public TextMeshProUGUI countdownText;
+    bool canLose = true;
 
     public TextMeshProUGUI startText;
     bool bSpawningEnemy = false;
@@ -82,7 +83,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        GameOverPanel.SetActive(true);
+        if (canLose)
+        {
+            GameOverPanel.SetActive(true);
+        }
+       
     }
 
     public void Retry()
@@ -90,7 +95,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void BeginLevelLoad()
+    public void BeginLevelLoad()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
@@ -139,7 +144,7 @@ public class GameManager : MonoBehaviour
 
                 completionPercent = 100 * (1 - (breakablesRemaining / breakablesTotal));
 
-                if (completionPercent > 90)
+                if (completionPercent > 80)
                 {
                     // Activate Halos on remaining breakables
                     foreach (Transform child in breakablesContainer)
@@ -150,13 +155,14 @@ public class GameManager : MonoBehaviour
                         }
                         else
                         {
-                            Debug.LogError("This 'breakable' (in breakablesContainer) has no child. Tried to activate Halo, but failed. " + child);
+                            //Debug.LogError("This 'breakable' (in breakablesContainer) has no child. Tried to activate Halo, but failed. " + child);
                         }
                     }
                 }
-                if (completionPercent >= 100.0f)
+                if (completionPercent >= 95.0f)
                 {
-                    BeginLevelLoad();
+                    canLose = false;
+                    NextLevelPanel.SetActive(true);
                 }
 
                 percentText.text = (int)completionPercent + "%";
